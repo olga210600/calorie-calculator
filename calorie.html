@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="calorie.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+
+    <div class="sex">
+        <p>Ваш пол</p>
+        <button value="female" id="female"  class="person">Женщина</button>
+        <button value="male" id="male" class="person">Мужчина</button>
+    </div>
+
+
+    <div class="options">
+        <p>Ваша конституция</p>
+        <input class="height" placeholder="Введите рост">
+        <input class="weight" placeholder="Введите вес">
+        <input class="age" placeholder="Введите возраст">
+    </div>
+
+
+    <div class="calculating-big">
+        <p>Выберите вашу физическую активность</p>
+        <button value = '1.2' class="action">Низкая активность</button>
+        <button value = '1.375' class="action">Невысокая активность</button>
+        <button value = '1.55' class="action">Умеренная активность</button>
+        <button value = '1.725' class="action">Высокая активность</button>
+    </div>
+
+
+    <div class="calories">
+        <p>Ваша суточная норма каллорий:</p>
+        <p class="result"></p>
+    </div>
+
+
+    <div>
+        <button class="count">Посчитать</button>
+    </div>
+
+</div>
+
+<script src="calorie.js"></script>
+</body>
+</html>
