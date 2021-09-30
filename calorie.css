@@ -94,3 +94,79 @@ button:active{
     color: white;
 
 }
+
+
+
+.main-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-wrapper{
+    max-width: 300px;
+    min-width: 290px;
+    width: 30%;
+    background: #11521c;
+    padding-left: 15px;
+    padding-bottom: 3px;
+    margin-right: 15px;
+}
+
+.input-wrapper{
+    /*!*padding-left: 10px;*!*/
+    /*margin: 15px;*/
+    margin-top: 10px;
+}
+
+input{
+    width: 270px;
+    height: 30px;
+    background: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.buttons-wrapper{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.clean,
+.add{
+    width: 135px;
+    border-radius: 5px;
+    background: white;
+    color: black;
+    height: 30px;
+}
+
+
+
+.table-wrapper{
+    background: palevioletred;
+    width:100% ;
+}
+
+#myTable{
+    background: #08961f;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+th{
+
+    padding: 15px;
+    font-weight: bold;
+
+}
+
+td{
+    text-align: center;
+}
+
+#myResult{
+    background: white;
+    height: 100px;
+}
