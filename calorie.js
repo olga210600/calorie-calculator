@@ -261,14 +261,13 @@ add.addEventListener('click',() =>{
 
     console.log(resultValues);
 
-
-
-    // resultCalory.appendChild(document.createTextNode(result.calory));
-
 resultCalory.innerText = result.calory
 resultProtein.innerText = result.protein
 resultFat.innerText = result.fat
 resultCarbo.innerText = result.carbohydrates
+
+
+
 
 });
 
