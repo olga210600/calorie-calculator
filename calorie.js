@@ -25,6 +25,13 @@ let resultProtein = document.getElementById('resultProtein');
 let  resultFat = document.getElementById('resultFat');
 let resultCarbo = document.getElementById('resultCarbo');
 
+const nameProduct = document.getElementById('name-product');
+const quantityProduct = document.getElementById('quantity-product');
+const caloryProduct = document.getElementById('calory-product');
+const proteinProduct = document.getElementById('protein-product');
+const fatProduct = document.getElementById('fat-product');
+const carbohydratesProduct = document.getElementById('carbohydrates-product');
+
 
 
 
@@ -95,7 +102,10 @@ let newTableRoad = {
     calory:'',
     protein:'',
     fat:'',
-    carbohydrates:''
+    carbohydrates:'',
+    id: '',
+    isEdit: false
+
 }
 
 
@@ -103,12 +113,12 @@ const products = [];
 
 
 const cleanAllFields = () => {
-    document.getElementById('name-product').value = '';
-    document.getElementById('quantity-product').value = '';
-    document.getElementById('calory-product').value = '';
-    document.getElementById('protein-product').value = '';
-    document.getElementById('fat-product').value = '';
-    document.getElementById('carbohydrates-product').value = '';
+    nameProduct.value = '';
+    quantityProduct.value = '';
+    caloryProduct.value = '';
+    proteinProduct.value = '';
+    fatProduct.value = '';
+    carbohydratesProduct.value = '';
 
     newTableRoad = {
         name: '',
@@ -116,7 +126,9 @@ const cleanAllFields = () => {
         calory: '',
         protein: '',
         fat: '',
-        carbohydrates: ''
+        carbohydrates: '',
+        id: '',
+        isEdit: false
     }
 }
 
@@ -133,6 +145,31 @@ const removeUser = (e, userId) => {
         }
     })
     console.log(products)
+
+    const result = countProductValues(products);
+
+    resultCalory.innerText = result.calory
+    resultProtein.innerText = result.protein
+    resultFat.innerText = result.fat
+    resultCarbo.innerText = result.carbohydrates
+}
+const editTableLine = (id) => {
+    products.forEach((product) => {
+        if (product.id === id) {
+            product.isEdit = true;
+
+            nameProduct.value = product.name;
+            quantityProduct.value = product.quality;
+            caloryProduct.value = product.calory;
+            proteinProduct.value = product.protein;
+            fatProduct.value = product.fat;
+            carbohydratesProduct.value = product.carbohydrates;
+        }else {
+            product.isEdit = false;
+        }
+    })
+
+    console.log("pkpjhgfpdp;l", products)
 }
 
 const createTable = (product) => {
@@ -142,6 +179,7 @@ const createTable = (product) => {
 
     const imgPen = document.createElement('img');
     imgPen.src = 'editSvg.svg';
+    imgPen.onclick = () => editTableLine(product.id);
 
     const imgBin = document.createElement('img');
     imgBin.src = 'binSvg.svg';
@@ -150,6 +188,7 @@ const createTable = (product) => {
 
     imgPen.width = 30;
     imgBin.width = 30;
+
 
     imgBin.addEventListener('click', (e) => removeUser(e, products.id));
 
@@ -185,6 +224,9 @@ const createTable = (product) => {
     table.appendChild(tr)
 };
 
+
+
+
 const countProductValues = (productArr) => {
     const countedValues = {
         calory: null,
@@ -208,58 +250,47 @@ const countProductValues = (productArr) => {
 
 
 add.addEventListener('click',() =>{
-    const nameProduct = document.getElementById('name-product').value;
-    const quantityProduct = document.getElementById('quantity-product').value;
-    const caloryProduct = document.getElementById('calory-product').value;
-    const proteinProduct = document.getElementById('protein-product').value;
-    const fatProduct = document.getElementById('fat-product').value;
-    const carbohydratesProduct = document.getElementById('carbohydrates-product').value;
-
-
     newTableRoad = {
-        name: nameProduct,
-        quantity: quantityProduct,
-        calory: caloryProduct,
-        protein: proteinProduct,
-        fat: fatProduct,
-        carbohydrates: carbohydratesProduct
+        name: nameProduct.value,
+        quantity: quantityProduct.value,
+        calory: caloryProduct.value,
+        protein: proteinProduct.value,
+        fat: fatProduct.value,
+        carbohydrates: carbohydratesProduct.value,
+        id: (new Date().getMilliseconds() * 123).toString(),
+        isEdit: false
     }
 
     createTable(newTableRoad);
     products.push(newTableRoad);
 
+    console.log('newTableRoad: ', newTableRoad)
+
     cleanAllFields()
 
 
 
-    let tds = document.querySelectorAll('td');
-    for(let i = 0; i < tds.length; i++){
-        tds[i].addEventListener('click', function func() {
-            let input = document.createElement('input');
-            input.value = this.innerHTML;
-            this.innerHTML = '';
-            this.appendChild(input);
-
-            let td = this;
-            input.addEventListener('blur', function () {
-                td.innerHTML = this.value;
-                td.addEventListener('click', func)
-            });
-            this.removeEventListener('click', func);
-        });
-    }
+    // let tds = document.querySelectorAll('td');
+    // for(let i = 0; i < tds.length; i++){
+    //     tds[i].addEventListener('click', function func() {
+    //         let input = document.createElement('input');
+    //         input.value = this.innerHTML;
+    //         this.innerHTML = '';
+    //         this.appendChild(input);
+    //
+    //         let td = this;
+    //         input.addEventListener('blur', function () {
+    //             td.innerHTML = this.value;
+    //             td.addEventListener('click', func)
+    //         });
+    //         this.removeEventListener('click', func);
+    //     });
+    // }
 
 
 
 
     const result = countProductValues(products);
-
-    console.log('result: ', result)
-    const resultValues = Object.values(result);
-
-    console.log(result.protein)
-
-    console.log(resultValues);
 
 resultCalory.innerText = result.calory
 resultProtein.innerText = result.protein
